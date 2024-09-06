@@ -29,7 +29,7 @@ CONF_POWERDOWNMODE = "power_down_mode"
 
 CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
     {
-        cv.Required(CONF_ID): cv.declare_id(DAC121),
+        cv.GenerateID(): cv.declare_id(DAC121),
         cv.Optional(CONF_POWERDOWNMODE, default="PDM_NORMAL"): cv.one_of(
             *POWERDOWNMODES, upper=True, space="_"
         )
