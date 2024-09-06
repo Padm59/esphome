@@ -44,5 +44,5 @@ async def to_code(config):
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
     await output.register_output(var, config)
-    cg.add(var.set_PDM(config[CONF_POWERDOWNMODE]))
+    cg.add(var.set_initial_PDM(config[CONF_POWERDOWNMODE]))
     return var
