@@ -27,15 +27,18 @@ POWERDOWNMODES = {
 CONF_DAC121_ID = "dac121_id"
 CONF_POWERDOWNMODE = "power_down_mode"
 
-CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
-    {
-        cv.GenerateID(CONF_ID): cv.declare_id(DAC121),
+CONFIG_SCHEMA = cv.All(
+    output.FLOAT_OUTPUT_SCHEMA.extend(
+        {
+        cv.GenerateID(): cv.declare_id(DAC121),
         cv.Optional(CONF_POWERDOWNMODE, default="PDM_NORMAL"): cv.one_of(
             *POWERDOWNMODES, upper=True, space="_"
-        ),
-        
-    }    
-    ).extend(i2c.i2c_device_schema(0x09))
+            ),
+        }    
+    )
+    .extend(cv.COMPONENT_SCHEMA)
+    .extend(i2c.i2c_device_schema(0x09))
+)
 
 
 async def to_code(config):
