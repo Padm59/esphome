@@ -19,10 +19,10 @@ dac121_ns = cg.esphome_ns.namespace("dac121")
 DAC121 = dac121_ns.class_("DAC121", cg.Component, output.FloatOutput, i2c.I2CDevice)
 PowerDownMode = dac121_ns.enum("PowerDownMode")
 POWERDOWNMODES = {
-    "PDM_NORMAL": PowerDownMode.PDM_NORMAL,
-    "PDM_2_5K_GND": PowerDownMode.PDM_2_5K_GND,
-    "PDM_100K_GND": PowerDownMode.PDM_100K_GND,
-    "PDM_HIGH_IMP": PowerDownMode.PDM_HIGH_IMP
+    "PDM_NORMAL": PowerDownMode.enum_PDM_NORMAL,
+    "PDM_2_5K_GND": PowerDownMode.enum_PDM_2_5K_GND,
+    "PDM_100K_GND": PowerDownMode.enum_PDM_100K_GND,
+    "PDM_HIGH_IMP": PowerDownMode.enum_PDM_HIGH_IMP
 }
 
 CONF_DAC121_ID = "dac121_id"
@@ -30,7 +30,7 @@ CONF_POWERDOWNMODE = "power_down_mode"
 
 CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
     {
-        cv.GenerateID(CONF_DAC121_ID): cv.use_id(DAC121),
+        cv.Required(CONF_ID): cv.use_id(DAC121),
         cv.Optional(CONF_POWERDOWNMODE, default="PDM_NORMAL"): cv.enum(
             PowerDownMode, upper=True, space="_"
         )

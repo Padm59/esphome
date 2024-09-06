@@ -45,7 +45,7 @@ void DAC121::dump_config() {
 void DAC121::write_state(float state) {
   this->data_ = 4095 * state;
   uint16_t maskedMode = (get_PDM_bits(pdm_) << 12) & PDM_MASK;
-  uint16_t maskedData = this->data_ & DATA_MASK;  
+  uint16_t maskedData = this->data_ & DATA_MASK;
   uint16_t value = maskedData | maskedMode;
   uint8_t send[2];
   this->uint16_to_array(value, send);
