@@ -17,12 +17,11 @@ MULTI_CONF = True
 
 dac121_ns = cg.esphome_ns.namespace("dac121")
 DAC121 = dac121_ns.class_("DAC121", cg.Component, output.FloatOutput, i2c.I2CDevice)
-PowerDownMode = dac121_ns.enum("PowerDownMode")
 POWERDOWNMODES = {
-    "PDM_NORMAL": PowerDownMode.enum_PDM_NORMAL,
-    "PDM_2_5K_GND": PowerDownMode.enum_PDM_2_5K_GND,
-    "PDM_100K_GND": PowerDownMode.enum_PDM_100K_GND,
-    "PDM_HIGH_IMP": PowerDownMode.enum_PDM_HIGH_IMP
+    "PDM_NORMAL": 0b00,
+    "PDM_2_5K_GND": 0b01,
+    "PDM_100K_GND": 0b10,
+    "PDM_HIGH_IMP": 0b11
 }
 
 CONF_DAC121_ID = "dac121_id"
@@ -31,8 +30,8 @@ CONF_POWERDOWNMODE = "power_down_mode"
 CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
     {
         cv.Required(CONF_ID): cv.use_id(DAC121),
-        cv.Optional(CONF_POWERDOWNMODE, default="PDM_NORMAL"): cv.enum(
-            PowerDownMode, upper=True, space="_"
+        cv.Optional(CONF_POWERDOWNMODE, default="PDM_NORMAL"): cv.one_of(
+            *POWERDOWNMODES, upper=True, space="_"
         )
     }
     
@@ -44,5 +43,5 @@ async def to_code(config):
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
     await output.register_output(var, config)
-    cg.add(var.set_initial_PDM(config[CONF_POWERDOWNMODE]))
+    cg.add(var.set_initial_PDM(POWERDOWNMODES[config.get[CONF_POWERDOWNMODE]]))
     return var
