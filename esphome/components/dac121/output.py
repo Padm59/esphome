@@ -29,6 +29,7 @@ CONF_POWERDOWNMODE = "power_down_mode"
 
 CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
     {
+        cv.Required(CONF_ID): cv.declare_id(DAC121),
         cv.Optional(CONF_POWERDOWNMODE, default="PDM_NORMAL"): cv.one_of(
             *POWERDOWNMODES, upper=True, space="_"
         )
@@ -43,4 +44,4 @@ async def to_code(config):
     await i2c.register_i2c_device(var, config)
     await output.register_output(var, config)
     cg.add(var.set_initial_PDM(POWERDOWNMODES[config.get[CONF_POWERDOWNMODE]]))
-    return var
+   

@@ -1,5 +1,6 @@
 #include <dac121_output.h>
-#include <log.h>
+#include "esphome/core/log.h"
+#include "esphome/core/helpers.h"
 
 // already defined in the header file
 // #define DATA_MASK       0b111111111111
