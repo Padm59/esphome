@@ -58,8 +58,8 @@ void DAC121::write_state(float state) {
 }
 
 void DAC121::uint16_to_array(uint16_t value, uint8_t *array) {
-  array[0] = (uint8_t) (value >> 8);    // Höheres Byte
-  array[1] = (uint8_t) (value & 0xFF);  // Niedrigeres Byte
+  array[1] = (uint8_t) (value >> 8);    // Höheres Byte
+  array[0] = (uint8_t) (value & 0xFF);  // Niedrigeres Byte
 }
 
 // uint8_t DAC121::get_PDM_bits(PowerDownMode mode) {
