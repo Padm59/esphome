@@ -51,15 +51,15 @@ void DAC121::write_state(float state) {
   uint8_t send[2];
   this->uint16_to_array(value, send);
   if(!this->write(send, 2)) {
-    ESP_LOGV(TAG, "Data send");
+    ESP_LOGV(TAG, "Data send %f",state);
   } else {
     ESP_LOGE(TAG, "Failed to send new State");
   }
 }
 
 void DAC121::uint16_to_array(uint16_t value, uint8_t *array) {
-  array[1] = (uint8_t) (value >> 8);    // Höheres Byte
-  array[0] = (uint8_t) (value & 0xFF);  // Niedrigeres Byte
+  array[0] = (uint8_t) (value >> 8);    // Höheres Byte
+  array[1] = (uint8_t) (value & 0xFF);  // Niedrigeres Byte
 }
 
 // uint8_t DAC121::get_PDM_bits(PowerDownMode mode) {
