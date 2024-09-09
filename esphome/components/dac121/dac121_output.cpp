@@ -25,7 +25,7 @@ void DAC121::setup() {
   uint16_t value = maskedData | maskedMode;
   uint8_t send[2];
   this->uint16_to_array(value, send);
-  if(!this->write(send, 2)) {
+  if(this->write(send, 2)) {
     ESP_LOGE(TAG, "Reset failed");
     this->mark_failed();
     return;
