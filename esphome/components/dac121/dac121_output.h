@@ -25,7 +25,7 @@ class DAC121 : public Component, public output::FloatOutput, public i2c::I2CDevi
     void dump_config() override;
     float get_setup_priority() const override { return setup_priority::HARDWARE; };
 
-    void set_initial_PDM(PowerDownMode pdm) {pdm_ = pdm;};
+    void set_initial_PDM(uint8_t pdm) {pdm_ = pdm;};
 
   protected:
     void write_state(float state) override;
