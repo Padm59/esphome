@@ -5,11 +5,6 @@ from esphome.components import i2c
 from esphome.const import (
      CONF_ID
 )
-#define PDM_NORMAL		0b00
-#define PDM_2_5K_GND	0b01
-#define PDM_100K_GND	0b10
-#define PDM_HIGH_IMP	0b11
-
 
 DEPENDENCIES = ["i2c"]
 MULTI_CONF = True
@@ -27,7 +22,7 @@ POWERDOWNMODES = {
 CONF_DAC121_ID = "dac121_id"
 CONF_POWERDOWNMODE = "power_down_mode"
 
-CONFIG_SCHEMA = cv.Schema(
+CONFIG_SCHEMA =(
     output.FLOAT_OUTPUT_SCHEMA.extend(
         {
         cv.GenerateID(): cv.declare_id(DAC121),
