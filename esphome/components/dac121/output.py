@@ -27,7 +27,7 @@ POWERDOWNMODES = {
 CONF_DAC121_ID = "dac121_id"
 CONF_POWERDOWNMODE = "power_down_mode"
 
-CONFIG_SCHEMA = cv.All(
+CONFIG_SCHEMA = cv.Schema(
     output.FLOAT_OUTPUT_SCHEMA.extend(
         {
         cv.GenerateID(): cv.declare_id(DAC121),
