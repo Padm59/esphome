@@ -1,4 +1,4 @@
-#include <dac121_output.h>
+#include "dac121_output.h"
 #include "esphome/core/log.h"
 #include "esphome/core/helpers.h"
 
