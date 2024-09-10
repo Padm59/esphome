@@ -31,7 +31,6 @@ class DAC121 : public Component, public output::FloatOutput, public i2c::I2CDevi
     void write_state(float state) override;
 
     void uint16_to_array(uint16_t value, uint8_t* array);
-    // uint8_t get_PDM_bits(PowerDownMode mode);
     
     uint8_t pdm_;
     uint16_t data_ = 0;
