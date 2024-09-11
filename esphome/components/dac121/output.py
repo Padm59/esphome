@@ -5,7 +5,7 @@ from esphome.components import i2c
 from esphome.const import (
      CONF_ID
 )
-
+CODEOWNERS = ["@Padm59"]
 DEPENDENCIES = ["i2c"]
 
 
