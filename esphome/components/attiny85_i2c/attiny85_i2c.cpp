@@ -33,7 +33,7 @@ void ATtiny85I2C::write_state(float state) {
   send[1] = frequency_;
   send[2] = frequency_ >> 8;
   if (!this->write(send, 3)) {
-    ESP_LOGV(TAG, "  PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, (this->dc_ * 100));
+    ESP_LOGV(TAG, "  PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
   } else {
     ESP_LOGE(TAG, "Failed to send new State");
   }
@@ -46,10 +46,10 @@ void ATtiny85I2C::update_frequency(uint16_t frequency) {
   send[1] = frequency_;
   send[2] = frequency_ >> 8;
   if (!this->write(send, 3)) {
-    ESP_LOGV(TAG, "PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, (this->dc_ * 100));
+    ESP_LOGV(TAG, "PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
   } else {
     ESP_LOGE(TAG, "Failed to send new State");
-    ESP_LOGV(TAG, "Faild to send PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, (this->dc_ * 100));
+    ESP_LOGV(TAG, "Faild to send PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
   }
 }
 
