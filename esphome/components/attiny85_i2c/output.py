@@ -33,7 +33,7 @@ SetFrequencyAction = attiny85_i2c_ns.class_("SetFrequencyAction", automation.Act
 CONFIG_SCHEMA = output.FLOAT_OUTPUT_SCHEMA.extend(
     {
         cv.Required(CONF_ID): cv.declare_id(ATtiny85I2C),
-        cv.Optional(CONF_FREQUENCY, default="1kHz"): cv.frequency,
+        cv.Optional(CONF_FREQUENCY, default="100Hz"): cv.frequency,
     }
 ).extend(cv.COMPONENT_SCHEMA).extend(i2c.i2c_device_schema(0x21))
 

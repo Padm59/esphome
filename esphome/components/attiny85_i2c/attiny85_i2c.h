@@ -24,7 +24,7 @@ class ATtiny85I2C : public Component, public output::FloatOutput, public i2c::I2
 
   protected:
 
-    uint16_t  frequency_ = 1000;
+    uint16_t  frequency_ = 100;
     float     dc_ = 0;
 };
 
