@@ -30,7 +30,7 @@ class ATtiny85I2C : public Component, public output::FloatOutput, public i2c::I2
 
 template<typename... Ts> class SetFrequencyAction : public Action<Ts...> {
  public:
-  SetFrequencyAction(LEDCOutput *parent) : parent_(parent) {}
+  SetFrequencyAction(ATtiny85I2C *parent) : parent_(parent) {}
   TEMPLATABLE_VALUE(uint16_t, frequency);
 
   void play(Ts... x) {
