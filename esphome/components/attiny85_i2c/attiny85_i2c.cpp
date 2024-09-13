@@ -19,9 +19,9 @@ void ATtiny85I2C::setup() {
 void ATtiny85I2C::dump_config() {
   
     if (this->is_failed()) {
-        ESP_LOGE(TAG, "Setting up DAC121 failed!");
+        ESP_LOGE(TAG, "Setting up ATtiny85PWM failed!");
     } else {
-        ESP_LOGCONFIG(TAG, "DAC121 initialised");
+        ESP_LOGCONFIG(TAG, "ATtiny85PWM initialised");
         ESP_LOGCONFIG(TAG, "  PWM Frequency: %u Hz", this->frequency_);
       }
 }
