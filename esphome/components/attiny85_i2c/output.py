@@ -9,6 +9,7 @@ from esphome.const import (
 )
 
 CODEOWNERS = ["@Padm59"]
+DEPENDENCIES = ["i2c"]
 #vlt umbenennen, auf attiny85pwm oder so falls die übergeordnete komponente attiny85_i2c nicht weiter entwickelt wird
 
 def validate_frequency(value):

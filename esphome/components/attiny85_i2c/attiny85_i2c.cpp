@@ -12,7 +12,6 @@ static const char *const TAG = "attiny85_i2c";
 void ATtiny85I2C::setup() {
   ESP_LOGV(TAG, "Entering setup...");
   update_frequency(this->frequency_);
-  ESP_LOGV(TAG, "Configured frequency %u Hz", this->frequency_);
 
 }
 
