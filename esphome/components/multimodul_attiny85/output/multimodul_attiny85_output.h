@@ -38,7 +38,7 @@ template<typename... Ts> class SetFrequencyAction : public Action<Ts...> {
   }
   
  protected:
-  
+  MultiModulATtiny85Component *parent_;
 };
 
 }  // namespace multimodul_attiny85
