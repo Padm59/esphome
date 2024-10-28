@@ -3,7 +3,6 @@
 #include "../multimodul_attiny85.h"
 #include "esphome/core/component.h"
 #include "esphome/components/output/float_output.h"
-#include "esphome/components/i2c/i2c.h"
 
 namespace esphome {
 namespace multimodul_attiny85 {
@@ -36,7 +35,7 @@ template<typename... Ts> class SetFrequencyAction : public Action<Ts...> {
   }
   
  protected:
-  ATtiny85I2C *parent_;
+  
 };
 
 }  // namespace multimodul_attiny85

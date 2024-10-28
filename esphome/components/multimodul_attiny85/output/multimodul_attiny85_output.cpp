@@ -1,10 +1,12 @@
 #include "multimodul_attiny85_output.h"
-
 #include "esphome/core/helpers.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
 namespace multimodul_attiny85 {
+
+  
+static const char *const TAG = "multimodul_attiny85_output";
 
 void MultiModulATtiny85Output::write_state(float state) {
   dc_ = state;

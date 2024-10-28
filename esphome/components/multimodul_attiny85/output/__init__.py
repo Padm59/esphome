@@ -5,6 +5,7 @@ from esphome.const import CONF_ID, CONF_FREQUENCY
 from .. import MultiModulATtiny85Component, CONF_MULTIMODULATTINY85_ID, multimodul_attiny85_ns
 
 DEPENDENCIES = ["multimodul_attiny85"]
+CODEOWNERS = ["@Padm59"]
 
 MultiModulATtiny85Output = multimodul_attiny85_ns.class_("MultiModulATtiny85Output", output.FloatOutput)
 
