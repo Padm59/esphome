@@ -6,7 +6,7 @@
 namespace esphome {
 namespace multimodul_attiny85 {
 
-/// MCP4728 float output component.
+
 class MultiModulATtiny85Component : public Component, public i2c::I2CDevice {
  public:
   MultiModulATtiny85Component();
@@ -17,7 +17,8 @@ class MultiModulATtiny85Component : public Component, public i2c::I2CDevice {
 
  protected:
   friend MultiModulATtiny85Output;
-  
+  friend MultiModulATtiny85Select;
+
 
  private:
 };

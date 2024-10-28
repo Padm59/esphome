@@ -3,6 +3,9 @@
 #include "../multimodul_attiny85.h"
 #include "esphome/core/component.h"
 #include "esphome/components/output/float_output.h"
+#include "esphome/core/helpers.h"
+#include "esphome/core/hal.h"
+#include "esphome/core/automation.h"
 
 namespace esphome {
 namespace multimodul_attiny85 {

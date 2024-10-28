@@ -6,6 +6,9 @@
 #include "../multimodul_attiny85.h"
 #include "esphome/components/select/select.h"
 #include "esphome/core/component.h"
+#include "esphome/core/helpers.h"
+#include "esphome/core/hal.h"
+#include "esphome/core/automation.h"
 
 namespace esphome {
 namespace multimodul_attiny85 {
