@@ -11,10 +11,19 @@ void MultiModulATtiny85Select::control(const std::string &value) {
   
   uint8_t data = mapStatusToInt(value);
   if (data != -1) {
-    if (!parent_->write(&data, 1)) {
-    ESP_LOGV(TAG, "StatusLED gesetzt: %s", value);
-    } else {
-    ESP_LOGE(TAG, "Failed to send new StatusLED state: %s", value);
+    if (data != STATUS_LED_flash_once){
+      this->publish_state(value);
+      if (!parent_->write(&data, 1)) {
+      ESP_LOGV(TAG, "StatusLED gesetzt: %s", value);
+      } else {
+      ESP_LOGE(TAG, "Failed to send new StatusLED state: %s", value);
+      }
+    }else {
+      if (!parent_->write(&data, 1)) {
+      ESP_LOGV(TAG, "StatusLED gesetzt: %s", value);
+      } else {
+      ESP_LOGE(TAG, "Failed to send new StatusLED state: %s", value);
+      }
     }
   }
 
