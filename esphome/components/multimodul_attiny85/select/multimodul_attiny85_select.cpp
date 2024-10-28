@@ -4,7 +4,7 @@
 namespace esphome {
 namespace multimodul_attiny85 {
 
-static const char *const TAGS = "multimodul_attiny85_select";
+static const char *const TAG = "multimodul_attiny85_select";
 
 void MultiModulATtiny85Select::control(const std::string &value) {
   this->publish_state(value);
@@ -12,9 +12,9 @@ void MultiModulATtiny85Select::control(const std::string &value) {
   uint8_t data = mapStatusToInt(value);
   if (data != -1) {
     if (!parent_->write(&data, 1)) {
-    ESP_LOGV(TAGS, "StatusLED gesetzt: %s", value);
+    ESP_LOGV(TAG, "StatusLED gesetzt: %s", value);
     } else {
-    ESP_LOGE(TAGS, "Failed to send new StatusLED state: %s", value);
+    ESP_LOGE(TAG, "Failed to send new StatusLED state: %s", value);
     }
   }
 

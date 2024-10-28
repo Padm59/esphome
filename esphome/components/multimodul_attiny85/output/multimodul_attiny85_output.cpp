@@ -6,7 +6,7 @@ namespace esphome {
 namespace multimodul_attiny85 {
 
   
-static const char *const TAGO = "multimodul_attiny85_output";
+static const char *const TAG = "multimodul_attiny85_output";
 
 void MultiModulATtiny85Output::write_state(float state) {
   dc_ = state;
@@ -15,9 +15,9 @@ void MultiModulATtiny85Output::write_state(float state) {
   send[1] = frequency_;
   send[2] = frequency_ >> 8;
   if (!parent_->write(send, 3)) {
-    ESP_LOGV(TAGO, "  PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
+    ESP_LOGV(TAG, "  PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
   } else {
-    ESP_LOGE(TAGO, "Failed to send new State");
+    ESP_LOGE(TAG, "Failed to send new State");
   }
 }
 
@@ -28,10 +28,10 @@ void MultiModulATtiny85Output::update_frequency(uint16_t frequency) {
   send[1] = frequency_;
   send[2] = frequency_ >> 8;
   if (!parent_->write(send, 3)) {
-    ESP_LOGV(TAGO, "PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
+    ESP_LOGV(TAG, "PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
   } else {
-    ESP_LOGE(TAGO, "Failed to send new State");
-    ESP_LOGV(TAGO, "Faild to send PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
+    ESP_LOGE(TAG, "Failed to send new State");
+    ESP_LOGV(TAG, "Faild to send PWM Frequency: %u Hz  DutyCicle: %u", this->frequency_, static_cast<uint8_t>(dc_ * 100));
   }
 }
 
