@@ -23,7 +23,7 @@ enum STATUS_LED
 
 class MultiModulATtiny85Select : public select::Select {
  public:
-  MultiModulATtiny85Select(MultiModulATtiny85Component *parent) : parent_(parent)
+  MultiModulATtiny85Select(MultiModulATtiny85Component *parent) : parent_(parent){}
 
   
  protected:
