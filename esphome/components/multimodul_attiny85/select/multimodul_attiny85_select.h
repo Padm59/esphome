@@ -27,7 +27,7 @@ class MultiModulATtiny85Select : public select::Select {
 
   
  protected:
-  MultiModulATtiny85Component *parent_
+  MultiModulATtiny85Component *parent_;
   
   void control(const std::string &value) override;
   uint8_t mapStatusToInt(const std::string& str);
