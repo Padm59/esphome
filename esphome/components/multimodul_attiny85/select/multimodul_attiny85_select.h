@@ -22,7 +22,7 @@ enum STATUS_LED
   STATUS_LED_flash      = 4,
   STATUS_LED_flash_once = 5,
   STATUS_LED_error      = 6
-}
+};
 
 class MultiModulATtiny85Select : public select::Select {
  public:

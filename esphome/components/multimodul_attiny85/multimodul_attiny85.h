@@ -21,8 +21,6 @@ class MultiModulATtiny85Component : public Component, public i2c::I2CDevice {
   friend MultiModulATtiny85Output;
   friend MultiModulATtiny85Select;
 
-
- private:
 };
 
 }  // namespace multimodul_attiny85
