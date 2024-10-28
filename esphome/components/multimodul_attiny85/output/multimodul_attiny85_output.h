@@ -1,32 +1,43 @@
 #pragma once
 
-#include "../mcp4728.h"
+#include "../multimodul_attiny85.h"
 #include "esphome/core/component.h"
 #include "esphome/components/output/float_output.h"
 #include "esphome/components/i2c/i2c.h"
 
 namespace esphome {
-namespace mcp4728 {
+namespace multimodul_attiny85 {
 
-class MCP4728Channel : public output::FloatOutput {
+class MultiModulATtiny85Output : public output::FloatOutput {
  public:
-  MCP4728Channel(MCP4728Component *parent, MCP4728ChannelIdx channel, MCP4728Vref vref, MCP4728Gain gain,
-                 MCP4728PwrDown pwrdown)
-      : parent_(parent), channel_(channel) {
-    // update VREF
-    parent->select_vref_(channel, vref);
-    // update PD
-    parent->select_power_down_(channel, pwrdown);
-    // update GAIN
-    parent->select_gain_(channel, gain);
-  }
+  MultiModulATtiny85Output(MultiModulATtiny85Component *parent) : parent_(parent) {}
+
+  void write_state(float state) override;
+  void  update_frequency(uint16_t frequency);
+  
+
 
  protected:
-  void write_state(float state) override;
+  MultiModulATtiny85Component *parent_;
+  uint16_t  frequency_ = 100;
+  float     dc_ = 0;
 
-  MCP4728Component *parent_;
-  MCP4728ChannelIdx channel_;
 };
 
-}  // namespace mcp4728
+
+template<typename... Ts> class SetFrequencyAction : public Action<Ts...> {
+ public:
+  SetFrequencyAction(MultiModulATtiny85Output *parent) : parent_(parent) {}
+  TEMPLATABLE_VALUE(uint16_t, frequency);
+
+  void play(Ts... x) {
+    uint16_t freq = this->frequency_.value(x...);
+    this->parent_->update_frequency(freq);
+  }
+  
+ protected:
+  ATtiny85I2C *parent_;
+};
+
+}  // namespace multimodul_attiny85
 }  // namespace esphome

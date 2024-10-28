@@ -2,7 +2,7 @@
 #include "esphome/core/log.h"
 
 namespace esphome {
-namespace modbus_controller {
+namespace multimodul_attiny85 {
 
 static const char *const TAG = "modbus_controller.select";
 
@@ -85,5 +85,5 @@ void ModbusSelect::control(const std::string &value) {
     this->publish_state(value);
 }
 
-}  // namespace modbus_controller
+}  // namespace multimodul_attiny85
 }  // namespace esphome

@@ -8,7 +8,7 @@
 #include "esphome/core/component.h"
 
 namespace esphome {
-namespace modbus_controller {
+namespace multimodul_attiny85 {
 
 class ModbusSelect : public Component, public select::Select, public SensorItem {
  public:
@@ -50,5 +50,5 @@ class ModbusSelect : public Component, public select::Select, public SensorItem 
   optional<write_transform_func_t> write_transform_func_;
 };
 
-}  // namespace modbus_controller
+}  // namespace multimodul_attiny85
 }  // namespace esphome
