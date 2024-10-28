@@ -11,8 +11,7 @@ class MultiModulATtiny85Select;
 
 class MultiModulATtiny85Component : public Component, public i2c::I2CDevice {
  public:
-  MultiModulATtiny85Component();
-
+  
   void setup() override;
   void dump_config() override;
   float get_setup_priority() const override { return setup_priority::HARDWARE; }
