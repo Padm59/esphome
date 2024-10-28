@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "../multimodul_attiny85.h"
-#include "../select/select.h"
+#include "esphome/components/select/select.h"
 #include "esphome/core/component.h"
 
 namespace esphome {
