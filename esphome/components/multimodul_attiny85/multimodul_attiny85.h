@@ -6,6 +6,8 @@
 namespace esphome {
 namespace multimodul_attiny85 {
 
+class MultiModulATtiny85Output;
+class MultiModulATtiny85Select;
 
 class MultiModulATtiny85Component : public Component, public i2c::I2CDevice {
  public:
