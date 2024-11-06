@@ -86,7 +86,7 @@ bool ESP32Can::setup_internal() {
   }
 
   // Install TWAI driver
-  if (twai_driver_install(&g_config, &t_config, &this->f_config_) != ESP_OK) {
+  if (twai_driver_install(&g_config, &t_config, &this->filter_config_) != ESP_OK) {
     // Failed to install driver
     this->mark_failed();
     return false;

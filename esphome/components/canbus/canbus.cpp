@@ -41,6 +41,7 @@ void Canbus::send_data(uint32_t can_id, bool use_extended_id, bool remote_transm
   can_message.use_extended_id = use_extended_id;
   can_message.remote_transmission_request = remote_transmission_request;
 
+
   for (int i = 0; i < size; i++) {
     can_message.data[i] = data[i];
     ESP_LOGVV(TAG, "  data[%d]=%02x", i, can_message.data[i]);

@@ -5,6 +5,7 @@
 #include "esphome/components/canbus/canbus.h"
 #include "esphome/core/component.h"
 #include <driver/twai.h>
+#include "esphome/core/helpers.h"
 
 namespace esphome {
 namespace esp32_can {
@@ -13,8 +14,12 @@ class ESP32Can : public canbus::Canbus {
  public:
   void set_rx(int rx) { rx_ = rx; }
   void set_tx(int tx) { tx_ = tx; }
-  void set_acceptance_code(uint32_t acceptance_code) { this->filter_config_.acceptance_code = acceptance_code; }
-  void set_acceptance_mask(uint32_t acceptance_mask) { this->filter_config_.acceptance_mask = acceptance_mask; }
+  void set_acceptance_code(uint32_t acceptance_code) {
+     this->filter_config_.acceptance_code = reverse_bits(acceptance_code);
+    }
+  void set_acceptance_mask(uint32_t acceptance_mask) {
+     this->filter_config_.acceptance_mask = reverse_bits(~acceptance_mask);
+    }
   void set_single_filter(bool single_filter) { this->filter_config_.single_filter = single_filter; }
   void set_tx_queue_len(uint32_t tx_queue_len) { this->tx_queue_len_ = tx_queue_len; }
   void set_rx_queue_len(uint32_t rx_queue_len) { this->rx_queue_len_ = rx_queue_len; }
