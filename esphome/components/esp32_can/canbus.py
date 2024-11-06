@@ -91,7 +91,7 @@ CONFIG_SCHEMA = canbus.CANBUS_SCHEMA.extend(
         cv.Optional(CONF_RX_QUEUE_LEN): cv.uint32_t,
         cv.Optional(CONF_TX_QUEUE_LEN): cv.uint32_t,
         cv.Optional(CONF_ACCEPTANCE_CODE, default=0): cv.uint32_t,
-        cv.Optional(CONF_ACCEPTANCE_MASK, default=0xFFFFFFFF): cv.uint32_t,
+        cv.Optional(CONF_ACCEPTANCE_MASK, default=0xFFFFFFFF): cv.uint32_t, # siehe https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/twai.html#acceptance-filter
         cv.Optional(CONF_SINGLE_FILTER, default=True): cv.boolean,
         
     }
