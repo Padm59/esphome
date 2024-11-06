@@ -20,6 +20,8 @@ from esphome.const import (
     CONF_TX_QUEUE_LEN,
 )
 
+
+
 CODEOWNERS = ["@Sympatron"]
 DEPENDENCIES = ["esp32"]
 
