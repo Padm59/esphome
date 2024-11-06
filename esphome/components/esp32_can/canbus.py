@@ -20,6 +20,10 @@ from esphome.const import (
     CONF_TX_QUEUE_LEN,
 )
 
+CONF_ACCEPTANCE_CODE = "acceptance_code"
+CONF_ACCEPTANCE_MASK = "acceptance_mask"
+CONF_SINGLE_FILTER   = "single_filter"
+
 
 
 CODEOWNERS = ["@Sympatron"]
@@ -86,6 +90,10 @@ CONFIG_SCHEMA = canbus.CANBUS_SCHEMA.extend(
         cv.Required(CONF_TX_PIN): pins.internal_gpio_output_pin_number,
         cv.Optional(CONF_RX_QUEUE_LEN): cv.uint32_t,
         cv.Optional(CONF_TX_QUEUE_LEN): cv.uint32_t,
+        cv.Optional(CONF_ACCEPTANCE_CODE, default=0): cv.uint32_t,
+        cv.Optional(CONF_ACCEPTANCE_MASK, default=0xFFFFFFFF): cv.uint32_t,
+        cv.Optional(CONF_SINGLE_FILTER, default=True): cv.boolean,
+        
     }
 )
 
@@ -96,6 +104,9 @@ async def to_code(config):
 
     cg.add(var.set_rx(config[CONF_RX_PIN]))
     cg.add(var.set_tx(config[CONF_TX_PIN]))
+    cg.add(var.set_acceptance_code(config[CONF_ACCEPTANCE_CODE]))
+    cg.add(var.set_acceptance_mask(config[CONF_ACCEPTANCE_MASK]))
+    cg.add(var.set_single_filter(config[CONF_SINGLE_FILTER]))
     if (rx_queue_len := config.get(CONF_RX_QUEUE_LEN)) is not None:
         cg.add(var.set_rx_queue_len(rx_queue_len))
     if (tx_queue_len := config.get(CONF_TX_QUEUE_LEN)) is not None:

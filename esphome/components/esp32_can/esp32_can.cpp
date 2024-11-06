@@ -76,7 +76,7 @@ bool ESP32Can::setup_internal() {
     g_config.rx_queue_len = this->rx_queue_len_.value();
   }
 
-  twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
+  // twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
   twai_timing_config_t t_config;
 
   if (!get_bitrate(this->bit_rate_, &t_config)) {
@@ -86,7 +86,7 @@ bool ESP32Can::setup_internal() {
   }
 
   // Install TWAI driver
-  if (twai_driver_install(&g_config, &t_config, &f_config) != ESP_OK) {
+  if (twai_driver_install(&g_config, &t_config, &this->f_config_) != ESP_OK) {
     // Failed to install driver
     this->mark_failed();
     return false;
