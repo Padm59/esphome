@@ -7,6 +7,11 @@
 #include <driver/twai.h>
 #include "esphome/core/helpers.h"
 
+#define TWAI_ID_SHIFTVALUE 21
+#define TWAI_ID_SHIFTVALUE_EXTENDED 3
+#define TWAI_MASK 0x1FFFFF
+#define TWAI_MASK_EXTENDED 0x7
+
 namespace esphome {
 namespace esp32_can {
 
@@ -15,12 +20,26 @@ class ESP32Can : public canbus::Canbus {
   void set_rx(int rx) { rx_ = rx; }
   void set_tx(int tx) { tx_ = tx; }
   void set_acceptance_code(uint32_t acceptance_code) {
-     this->filter_config_.acceptance_code = reverse_bits(acceptance_code);
+     this->filter_config_.acceptance_code = acceptance_code;
     }
   void set_acceptance_mask(uint32_t acceptance_mask) {
-     this->filter_config_.acceptance_mask = reverse_bits(~acceptance_mask);
+     this->filter_config_.acceptance_mask = acceptance_mask;
     }
   void set_single_filter(bool single_filter) { this->filter_config_.single_filter = single_filter; }
+
+  void set_filter_extended(bool extended) { this->extended_id_ = extended; }
+  void set_filter_id(uint32_t filter_id) {
+      if (this->extended_id_) {
+        this->filter_config_.acceptance_code = (filter_id << TWAI_ID_SHIFTVALUE_EXTENDED);
+        this->filter_config_.acceptance_mask = TWAI_MASK_EXTENDED;
+      } else {
+        this->filter_config_.acceptance_code = (filter_id << TWAI_ID_SHIFTVALUE);
+        this->filter_config_.acceptance_mask = TWAI_MASK;
+      }
+      this->filter_config_.single_filter = true;
+      
+  }
+
   void set_tx_queue_len(uint32_t tx_queue_len) { this->tx_queue_len_ = tx_queue_len; }
   void set_rx_queue_len(uint32_t rx_queue_len) { this->rx_queue_len_ = rx_queue_len; }
   ESP32Can(){};
@@ -33,6 +52,7 @@ class ESP32Can : public canbus::Canbus {
   int rx_{-1};
   int tx_{-1};
   twai_filter_config_t filter_config_;
+  bool extended_id_ = true;
   // uint32_t acceptance_code_;
   // uint32_t acceptance_mask_;
   // bool     single_filter_;
