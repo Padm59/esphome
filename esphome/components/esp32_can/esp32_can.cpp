@@ -1,3 +1,5 @@
+// Jetzt mit HW Filter support
+
 #ifdef USE_ESP32
 #include "esp32_can.h"
 #include "esphome/core/log.h"

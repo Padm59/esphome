@@ -1,3 +1,5 @@
+# Jetzt mit HW Filter support
+
 from esphome import pins
 import esphome.codegen as cg
 from esphome.components import canbus
@@ -28,7 +30,7 @@ CONF_FILTER_EXTENDED = "filter_extended"
 
 
 
-CODEOWNERS = ["@Sympatron"]
+CODEOWNERS = ["@Sympatron"] 
 DEPENDENCIES = ["esp32"]
 
 esp32_can_ns = cg.esphome_ns.namespace("esp32_can")
